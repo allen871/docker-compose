@@ -1,0 +1,19 @@
+version: '3.4'
+services:
+  docker_jenkins:
+    restart: always
+    image: jenkins/jenkins:2.263.4-lts
+    container_name: docker_jenkins
+    privileged: true
+    user: root
+    ports:
+      - '8080:8080'
+      - '50000:50000'
+    volumes:
+      - /data/jenkins/jenkins_home/:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
+      - /data/soft/maven:/opt/maven
+      - /data/soft/java/jdk1.8.0_201:/opt/java/jdk1.8.0_201
+      - /data/nginx/jenkins:/opt/nginx
+

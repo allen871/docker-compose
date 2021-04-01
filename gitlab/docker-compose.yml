@@ -1,0 +1,17 @@
+version: '3.2'
+services:
+  web:
+    image: 'gitlab/gitlab-ce:latest'
+    restart: always
+    hostname: 'server01'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://test.example.com:81'  #访问域名
+        gitlab_rails['gitlab_shell_ssh_port'] = 23  #修改ssh端口
+    ports:
+      - '81:81'
+      - '23:22'
+    volumes:
+      - '/data02/srv/gitlab/config:/etc/gitlab'
+      - '/data02/srv/gitlab/logs:/var/log/gitlab'
+      - '/data02/srv/gitlab/data:/var/opt/gitlab'

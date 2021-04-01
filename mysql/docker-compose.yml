@@ -1,0 +1,15 @@
+version: '3.2'
+services:
+  joyi-mysql:
+    image: docker.yiyitech.com/joyi_test/mysql:5.7
+    container_name: mysql5.7
+    restart: on-failure
+    ports:
+      - "3306:3306"
+    volumes:
+      - /data/mysql/data:/var/lib/mysql
+      - /data/mysql/conf.d:/etc/mysql/conf.d
+      - /data/mysql/logs:/var/log/mysql
+      - /etc/localtime:/etc/localtime
+    environment:
+      - "MYSQL_ROOT_PASSWORD=password"
